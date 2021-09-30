@@ -10,16 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeTodoApp">
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ComposeTodoApp.NoActionBar">
+            android:name=".view.TaskListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
