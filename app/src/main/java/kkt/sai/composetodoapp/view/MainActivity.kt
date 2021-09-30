@@ -1,9 +1,11 @@
-package kkt.sai.composetodoapp
+package kkt.sai.composetodoapp.view
 
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,8 +24,10 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Android")
+                    Joking(joke = "Haha")
 
                 }
+                
             }
         }
     }
@@ -34,6 +38,15 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!",Modifier.padding(2.dp,2.dp))
 
 }
+
+@Composable
+fun Joking(joke:String){
+    Card {
+        Text(text = joke)
+
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable
