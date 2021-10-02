@@ -41,18 +41,18 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val factory = TodoViewModelFactory();
         viewModel = ViewModelProvider(this,factory).get(MainViewModel::class.java)
+        viewModel._items.observe(viewLifecycleOwner,{
+            it.onSuccess {
+                textView?.text = it.get(0).title
+            }
+        })
 
 
-        activity?.let {
-            viewModel._items.observe(it, Observer {
-              it.onSuccess {
-                  textView?.text = it.get(0).title;
-
-              }
-            })
         }
+
 
 
     }
 
-}
+
+

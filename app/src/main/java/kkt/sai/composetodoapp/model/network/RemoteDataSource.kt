@@ -1,4 +1,4 @@
-package kkt.sai.composetodoapp.model
+package kkt.sai.composetodoapp.model.network
 
 import kkt.sai.composetodoapp.entity.Task
 
