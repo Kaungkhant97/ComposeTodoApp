@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import kkt.sai.composetodoapp.R
 import kkt.sai.composetodoapp.TodoViewModelFactory
+import kkt.sai.composetodoapp.entity.OutCome
+import kkt.sai.composetodoapp.entity.succeeded
 import kkt.sai.composetodoapp.model.TaskRepository
 import kkt.sai.composetodoapp.viewmodel.MainViewModel
 
@@ -42,9 +44,11 @@ class TaskListFragment : Fragment() {
         val factory = TodoViewModelFactory();
         viewModel = ViewModelProvider(this,factory).get(MainViewModel::class.java)
         viewModel._items.observe(viewLifecycleOwner,{
-            it.onSuccess {
-                textView?.text = it.get(0).title
-            }
+
+            if(it.succeeded){
+               textView?.text = (it as OutCome.Success).data.get(0).title
+
+           }
         })
 
 
