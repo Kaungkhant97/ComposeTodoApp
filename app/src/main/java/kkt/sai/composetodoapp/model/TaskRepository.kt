@@ -5,6 +5,8 @@ import kkt.sai.composetodoapp.entity.Task
 
 interface TaskRepository {
 
-    fun getTasks(): LiveData<Result<List<Task>>>;
+    fun getTasks(): LiveData<Result<List<Task>>>
+
+    fun getTasksNetwork(): LiveData<Result<List<Task>>>
 
 }

@@ -9,7 +9,9 @@ import kkt.sai.composetodoapp.model.TaskRepository
 class MainViewModel(val taskRepo :TaskRepository)  : ViewModel() {
 
     // TODO: Implement the ViewModel
-     val _items: LiveData<Result<List<Task>>> = taskRepo.getTasks();
+     val _items: LiveData<Result<List<Task>>> = taskRepo.getTasksNetwork()
+
+
 
 
 
