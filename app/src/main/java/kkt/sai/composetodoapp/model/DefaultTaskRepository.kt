@@ -26,6 +26,7 @@ class DefaultTaskRepository(
     override fun getTasksNetwork(): LiveData<OutCome<List<Task>>> {
         val Response = liveData(Dispatchers.IO) {
             emit(Loading)
+            kotlinx.coroutines.delay(10000L)
             emit(tasksRemoteDataSource.getTasks())
         }
         return Response

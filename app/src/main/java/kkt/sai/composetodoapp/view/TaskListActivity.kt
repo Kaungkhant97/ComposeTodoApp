@@ -2,8 +2,10 @@ package kkt.sai.composetodoapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import kkt.sai.composetodoapp.R
 
+@AndroidEntryPoint
 class TaskListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

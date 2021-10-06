@@ -2,12 +2,14 @@ package kkt.sai.composetodoapp.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import kkt.sai.composetodoapp.R
 import kkt.sai.composetodoapp.entity.OutCome
@@ -45,17 +47,13 @@ class TaskListFragment : Fragment() {
         viewModel._items.observe(viewLifecycleOwner,{
 
             if(it.succeeded){
-               textView?.text = (it as OutCome.Success).data.get(0).title
-
-           }
+               textView?.text = (it as OutCome.Success).data[0].title
+           } else if (it is OutCome.Loading) {
+                Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+            }
         })
-
-
-        }
-
-
-
     }
+}
 
 
 
