@@ -7,6 +7,8 @@ buildscript {
         navigationVersion = '2.3.5'
         ktlintVersion = '0.33.0'
         hiltVersion = "2.36"
+        fragmentVersion = '1.3.4'
+        fragmentKtxVersion = '1.3.4'
     }
     repositories {
         google()

@@ -4,27 +4,26 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import androidx.fragment.app.viewModels
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.Observer
+import dagger.hilt.android.AndroidEntryPoint
 import kkt.sai.composetodoapp.R
-import kkt.sai.composetodoapp.TodoViewModelFactory
 import kkt.sai.composetodoapp.entity.OutCome
 import kkt.sai.composetodoapp.entity.succeeded
-import kkt.sai.composetodoapp.model.TaskRepository
 import kkt.sai.composetodoapp.viewmodel.MainViewModel
 
-
+@AndroidEntryPoint
 class TaskListFragment : Fragment() {
 
     companion object {
         fun newInstance() = TaskListFragment()
     }
-
+    private val viewModel by viewModels<MainViewModel>()
 
     private var textView: TextView? = null;
-    private lateinit var viewModel: MainViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +40,8 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        val factory = TodoViewModelFactory();
-        viewModel = ViewModelProvider(this,factory).get(MainViewModel::class.java)
+
+
         viewModel._items.observe(viewLifecycleOwner,{
 
             if(it.succeeded){
