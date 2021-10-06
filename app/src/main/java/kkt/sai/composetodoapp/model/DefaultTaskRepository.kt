@@ -1,13 +1,13 @@
 package kkt.sai.composetodoapp.model
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import kkt.sai.composetodoapp.entity.OutCome
 import kkt.sai.composetodoapp.entity.Task
 import kkt.sai.composetodoapp.model.network.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kkt.sai.composetodoapp.entity.OutCome.*
+import kkt.sai.composetodoapp.model.local.LocalDataSource
 
 
 class DefaultTaskRepository(
@@ -28,6 +28,6 @@ class DefaultTaskRepository(
             emit(Loading)
             emit(tasksRemoteDataSource.getTasks())
         }
-        return Response as LiveData<OutCome<List<Task>>>
+        return Response
     }
 }

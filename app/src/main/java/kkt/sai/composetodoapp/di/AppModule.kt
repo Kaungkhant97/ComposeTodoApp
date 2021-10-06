@@ -1,22 +1,23 @@
 package kkt.sai.composetodoapp.di
 
 import android.content.Context
+import androidx.room.Room
+import com.example.android.architecture.blueprints.todoapp.data.source.local.TasksDao
+import com.example.android.architecture.blueprints.todoapp.data.source.local.ToDoDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kkt.sai.composetodoapp.model.DefaultLocalDataSource
+import kkt.sai.composetodoapp.model.local.DefaultLocalDataSource
 import kkt.sai.composetodoapp.model.DefaultTaskRepository
-import kkt.sai.composetodoapp.model.LocalDataSource
+import kkt.sai.composetodoapp.model.local.LocalDataSource
 import kkt.sai.composetodoapp.model.TaskRepository
 import kkt.sai.composetodoapp.model.network.DefaultRemoteDataSource
 import kkt.sai.composetodoapp.model.network.RemoteDataSource
 import kkt.sai.composetodoapp.model.network.RetrofitBuilder
 import kkt.sai.composetodoapp.model.network.TaskService
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 
@@ -35,14 +36,20 @@ import javax.inject.Singleton
 
         @Singleton
         @Provides
+        fun provideTasksDao(@ApplicationContext context: Context): ToDoDatabase {
+             return Room.databaseBuilder(context.applicationContext
+            ,ToDoDatabase::class.java,"Tasks.db").build()
+        }
+        @Singleton
+        @Provides
         fun provideTasksRemoteDataSource(taskService: TaskService): RemoteDataSource {
             return DefaultRemoteDataSource(taskService);
         }
 
         @Singleton
         @Provides
-        fun provideTasksLocalDataSource(): LocalDataSource {
-            return DefaultLocalDataSource();
+        fun provideTasksLocalDataSource(tododatabase: ToDoDatabase): LocalDataSource {
+            return DefaultLocalDataSource(tododatabase.taskDao());
         }
 
 

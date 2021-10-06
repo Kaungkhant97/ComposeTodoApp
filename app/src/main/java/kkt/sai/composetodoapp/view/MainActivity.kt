@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val task = Task("a","b",1)
+        val task = Task("a","b")
 
         setContent {
             ComposeTodoAppTheme {
