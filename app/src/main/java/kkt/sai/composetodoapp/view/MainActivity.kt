@@ -1,7 +1,6 @@
 package kkt.sai.composetodoapp.view
 
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
@@ -14,7 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kkt.sai.composetodoapp.entity.Task
-import kkt.sai.composetodoapp.ui.theme.ComposeTodoAppTheme
+import kkt.sai.composetodoapp.ui.screens.detail.AlertDialogSample
+import kkt.sai.composetodoapp.view.theme.ComposeTodoAppTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -27,8 +27,7 @@ class MainActivity : ComponentActivity() {
             ComposeTodoAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                    Joking(joke = "Haha")
+                   AlertDialogSample();
 
                 }
                 
