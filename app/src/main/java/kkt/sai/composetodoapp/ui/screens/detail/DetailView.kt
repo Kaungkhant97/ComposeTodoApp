@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import kkt.sai.composetodoapp.entity.Task
 
 @Composable
 fun DetailScafold(
@@ -44,7 +45,7 @@ fun AlertDialogSample() {
     MaterialTheme {
         Column {
             val openDialog = remember { mutableStateOf(false)  }
-
+            val task = remember { mutableStateOf(Task())}
             Button(onClick = {
                 openDialog.value = true
             }) {
@@ -85,6 +86,7 @@ fun SampleTaskDetail(dismiss :MutableState<Boolean>){
 @Composable
 @Preview
 fun previewDetail(){
+
     val state = mutableStateOf(false);
     SampleTaskDetail(state);
 }
