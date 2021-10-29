@@ -1,4 +1,4 @@
-package kkt.sai.composetodoapp.ui.theme
+package kkt.sai.composetodoapp.view.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
