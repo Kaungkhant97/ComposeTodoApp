@@ -11,8 +11,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  : ViewModel() {
-
-
      val _items: LiveData<OutCome<List<Task>>> = taskRepo.getTasksNetwork()
 
 

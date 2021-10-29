@@ -1,10 +1,8 @@
 package kkt.sai.composetodoapp.model.local
 
-import androidx.lifecycle.LiveData
-import kkt.sai.composetodoapp.entity.OutCome
 import kkt.sai.composetodoapp.entity.Task
+import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
-
-    fun getTasks():LiveData<OutCome<List<Task>>>;
+    fun getTasks():Flow<List<Task>>
 }

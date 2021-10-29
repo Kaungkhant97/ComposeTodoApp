@@ -4,7 +4,7 @@ import  kkt.sai.composetodoapp.entity.OutCome.Success
 sealed class OutCome<out R> {
 
     data class Success<out T>(val data: T) : OutCome<T>()
-    data class Error(val exception: Exception) : OutCome<Nothing>()
+    data class Error(val exception: String?) : OutCome<Nothing>()
     object Loading : OutCome<Nothing>()
 
     override fun toString(): String {

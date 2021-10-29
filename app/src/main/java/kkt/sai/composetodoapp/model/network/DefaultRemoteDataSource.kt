@@ -7,10 +7,6 @@ import kkt.sai.composetodoapp.entity.OutCome.*
 
 class DefaultRemoteDataSource (val taskService: TaskService) : RemoteDataSource {
     override suspend fun getTasks(): OutCome<List<Task>> {
-        return try {
-            Success(taskService.getTasks())
-        } catch (exception: Exception) {
-            Error(exception)
-        }
+        return Loading
     }
 }
