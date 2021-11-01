@@ -12,10 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kkt.sai.composetodoapp.entity.Task
 import kkt.sai.composetodoapp.ui.screens.detail.AlertDialogSample
+import kkt.sai.composetodoapp.ui.screens.edit.EditScreen
 import kkt.sai.composetodoapp.view.theme.ComposeTodoAppTheme
+import kkt.sai.composetodoapp.viewmodel.MainViewModel
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +32,8 @@ class MainActivity : ComponentActivity() {
             ComposeTodoAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                   AlertDialogSample();
+                    val mainViewModel = hiltViewModel<MainViewModel>()
+                  EditScreen(  mainViewModel =mainViewModel,isedit = false )
 
                 }
                 

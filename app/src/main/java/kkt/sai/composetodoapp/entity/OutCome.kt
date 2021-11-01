@@ -1,6 +1,8 @@
 package kkt.sai.composetodoapp.entity
 
 import  kkt.sai.composetodoapp.entity.OutCome.Success
+import kotlinx.coroutines.flow.Flow
+
 sealed class OutCome<out R> {
 
     data class Success<out T>(val data: T) : OutCome<T>()

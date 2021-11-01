@@ -13,9 +13,13 @@ class DefaultLocalDataSource internal constructor(private val tasksDao: TasksDao
                             ) : LocalDataSource {
 
 
-    override fun getTasks(): Flow<OutCome<List<Task>>> {
+    override fun getTasks(): LiveData<OutCome<List<Task>>> {
         return Transformations.map(tasksDao.getTasks(),{
             OutCome.Success(it);
         })
+    }
+
+    override suspend fun insertTask(task:Task) {
+        tasksDao.insertTask(task);
     }
 }

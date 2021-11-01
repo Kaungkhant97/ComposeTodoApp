@@ -8,6 +8,9 @@ import kkt.sai.composetodoapp.model.network.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kkt.sai.composetodoapp.entity.OutCome.*
 import kkt.sai.composetodoapp.model.local.LocalDataSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import java.lang.Error
 
 
 class DefaultTaskRepository(
@@ -30,5 +33,11 @@ class DefaultTaskRepository(
             emit(tasksRemoteDataSource.getTasks())
         }
         return Response
+    }
+
+    override suspend fun insertTask(task: Task) {
+         taskslocalDataSource.insertTask(task);
+
+
     }
 }
