@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SaiViewModel @Inject constructor(private val taskRepo : TaskRepository)  : ViewModel() {
+class ListViewModel @Inject constructor(private val taskRepo : TaskRepository)  : ViewModel() {
     private val _allTasks = MutableStateFlow<OutCome<List<Task>>>(OutCome.Loading)
     val allTasks: StateFlow<OutCome<List<Task>>> = _allTasks
 

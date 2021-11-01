@@ -1,6 +1,5 @@
 package kkt.sai.composetodoapp.ui.screens.list
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,7 +9,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -20,15 +18,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kkt.sai.composetodoapp.entity.OutCome
 import kkt.sai.composetodoapp.entity.Task
-import kkt.sai.composetodoapp.entity.succeeded
 import kkt.sai.composetodoapp.ui.screens.list.listcomposables.ListBotBar
-import kkt.sai.composetodoapp.viewmodel.SaiViewModel
+import kkt.sai.composetodoapp.viewmodel.ListViewModel
 
 // ListScreen Top Hierarchy
 @ExperimentalMaterialApi
 @Composable
 fun ListScreen(
-    viewModel: SaiViewModel
+    viewModel: ListViewModel
 ) {
     val allTasks by viewModel.allTasks.collectAsState()
 

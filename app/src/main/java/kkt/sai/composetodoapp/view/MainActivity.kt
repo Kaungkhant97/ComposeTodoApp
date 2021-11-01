@@ -1,10 +1,8 @@
 package kkt.sai.composetodoapp.view
 
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -16,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kkt.sai.composetodoapp.entity.Task
 import kkt.sai.composetodoapp.ui.screens.list.ListScreen
 import kkt.sai.composetodoapp.ui.theme.ComposeTodoAppTheme
-import kkt.sai.composetodoapp.viewmodel.SaiViewModel
+import kkt.sai.composetodoapp.viewmodel.ListViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -30,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ComposeTodoAppTheme {
-                val viewModel = hiltViewModel<SaiViewModel>()
+                val viewModel = hiltViewModel<ListViewModel>()
                 // A surface container using the 'background' color from the theme
                 ListScreen(viewModel = viewModel)
             }
