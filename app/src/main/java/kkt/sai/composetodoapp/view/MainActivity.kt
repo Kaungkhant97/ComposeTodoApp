@@ -15,7 +15,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kkt.sai.composetodoapp.entity.Task
-import kkt.sai.composetodoapp.ui.screens.detail.AlertDialogSample
 import kkt.sai.composetodoapp.ui.screens.edit.EditScreen
 import kkt.sai.composetodoapp.ui.screens.list.ListScreen
 import kkt.sai.composetodoapp.view.theme.ComposeTodoAppTheme
@@ -54,11 +53,14 @@ fun NavigationComponent(){
 
         composable("list"){
             val listViewModel = hiltViewModel<ListViewModel>();
-            ListScreen(viewModel = listViewModel);
+            ListScreen(viewModel = listViewModel,{taskId:String -> navController.navigate("edit?taskId="+taskId)});
         }
-        composable("edit"){
-            val mainViewModel = hiltViewModel<MainViewModel>()
-            EditScreen(  mainViewModel =mainViewModel,isedit = false )
+        composable("edit?taskId={taskId}"){
+
+
+            val mainViewModel = hiltViewModel<MainViewModel>();
+            EditScreen(  taskId = it.arguments?.getString("taskId"),mainViewModel )
+
         }
     }
 }

@@ -24,7 +24,8 @@ import kkt.sai.composetodoapp.viewmodel.ListViewModel
 @ExperimentalMaterialApi
 @Composable
 fun ListScreen(
-    viewModel: ListViewModel
+    viewModel: ListViewModel,
+    navigate: (route:String) -> Unit
 ) {
     val allTasks by viewModel.allTasks.collectAsState()
 
@@ -34,7 +35,7 @@ fun ListScreen(
         },
         content = {
             if (allTasks is OutCome.Success) {
-                DisplayTasks(tasks = (allTasks as OutCome.Success<List<Task>>).data)
+                DisplayTasks(tasks = (allTasks as OutCome.Success<List<Task>>).data,navigate)
             }
         },
         floatingActionButton = {
@@ -42,7 +43,7 @@ fun ListScreen(
         },
         floatingActionButtonPosition = FabPosition.Center,
         bottomBar = {
-            
+
         },
     )
 }
@@ -50,10 +51,10 @@ fun ListScreen(
 
 @ExperimentalMaterialApi
 @Composable
-fun DisplayTasks(tasks: List<Task>) {
+fun DisplayTasks(tasks: List<Task>, navigate: (route: String) -> Unit) {
     LazyColumn {
         items(tasks, itemContent = {
-                item -> TaskItem(task = item)
+                item -> TaskItem(task = item,navigate)
         })
     }
 }
@@ -61,12 +62,14 @@ fun DisplayTasks(tasks: List<Task>) {
 @ExperimentalMaterialApi
 @Composable
 fun TaskItem(
-    task: Task
+    task: Task,
+    navigate: (route: String) -> Unit
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth(),
         shape = RectangleShape,
+        onClick = {navigate(task.id)}
     ) {
         Column(
             modifier = Modifier
@@ -112,4 +115,5 @@ fun ListFab() {
 @Preview
 @Composable
 fun ListScreenPreview() {
+
 }

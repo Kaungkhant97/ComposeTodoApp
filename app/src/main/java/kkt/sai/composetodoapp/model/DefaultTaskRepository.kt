@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import java.lang.Error
+import java.lang.NullPointerException
 
 
 class DefaultTaskRepository(
@@ -41,5 +42,14 @@ class DefaultTaskRepository(
          taskslocalDataSource.insertTask(task);
 
 
+    }
+
+    override suspend fun getTask(taskId:String): OutCome<Task> {
+        var task = taskslocalDataSource.getTask(taskId);
+        if (task == null){
+          return OutCome.Error(NullPointerException());
+      }else{
+          return OutCome.Success(task);
+      }
     }
 }

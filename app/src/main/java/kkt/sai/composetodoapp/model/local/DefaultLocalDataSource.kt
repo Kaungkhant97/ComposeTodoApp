@@ -21,4 +21,8 @@ class DefaultLocalDataSource internal constructor(private val tasksDao: TasksDao
     override suspend fun insertTask(task:Task) {
         tasksDao.insertTask(task);
     }
+
+    override suspend fun getTask(taskId: String): Task? {
+        return tasksDao.getTaskById(taskId);
+    }
 }
