@@ -2,8 +2,7 @@ package kkt.sai.composetodoapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.android.architecture.blueprints.todoapp.data.source.local.TasksDao
-import com.example.android.architecture.blueprints.todoapp.data.source.local.ToDoDatabase
+import kkt.sai.composetodoapp.model.local.ToDoDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +18,6 @@ import kkt.sai.composetodoapp.model.network.RetrofitBuilder
 import kkt.sai.composetodoapp.model.network.TaskService
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
-
-
-
-
     @Module
     @InstallIn(SingletonComponent::class)
     object AppModule {
@@ -38,7 +33,7 @@ import javax.inject.Singleton
         @Provides
         fun provideTasksDao(@ApplicationContext context: Context): ToDoDatabase {
              return Room.databaseBuilder(context.applicationContext
-            ,ToDoDatabase::class.java,"Tasks.db").build()
+            , ToDoDatabase::class.java,"Tasks.db").build()
         }
         @Singleton
         @Provides
@@ -51,8 +46,6 @@ import javax.inject.Singleton
         fun provideTasksLocalDataSource(tododatabase: ToDoDatabase): LocalDataSource {
             return DefaultLocalDataSource(tododatabase.taskDao());
         }
-
-
 
         @Singleton
         @Provides

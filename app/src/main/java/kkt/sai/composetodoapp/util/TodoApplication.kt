@@ -6,7 +6,6 @@ import kkt.sai.composetodoapp.BuildConfig
 
 @HiltAndroidApp
 class TodoApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
 
