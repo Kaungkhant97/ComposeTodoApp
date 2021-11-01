@@ -18,9 +18,7 @@ import kkt.sai.composetodoapp.viewmodel.MainViewModel
 
 @Composable
 fun EditScreen ( isedit:Boolean, mainViewModel: MainViewModel){
-    mainViewModel._items.observe(this,{
-        val data = it as Outcome.Success
-    })
+
     Column(modifier = Modifier.wrapContentSize()) {
          TextField(value = mainViewModel.title.value, onValueChange = { mainViewModel.title.value =it.trim().toString()},textStyle = MaterialTheme.typography.h2)
          Spacer(modifier = Modifier.padding(10.dp))

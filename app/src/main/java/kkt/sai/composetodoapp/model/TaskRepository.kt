@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {
 
-//    fun getTasks(): LiveData<OutCome<List<Task>>>
+    fun getTasks(): Flow<OutCome<List<Task>>>
 
     fun getTasksNetwork(): LiveData<OutCome<List<Task>>>
 

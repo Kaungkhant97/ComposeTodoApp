@@ -19,12 +19,12 @@ class DefaultTaskRepository(
 ) : TaskRepository {
 
 
-//    override fun getTasks(): LiveData<OutCome<List<Task>>> {
-//        val data = MutableLiveData<Result<List<Task>>>()
-////        data.value = taskslocalDataSource.getTasks()
-//
-//        return data;
-//    }
+    override fun getTasks(): Flow<OutCome<List<Task>>> {
+
+      data.value = taskslocalDataSource.getTasks()
+
+        return data;
+    }
 
     override fun getTasksNetwork(): LiveData<OutCome<List<Task>>> {
         val Response = liveData(Dispatchers.IO) {
