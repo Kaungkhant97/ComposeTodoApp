@@ -10,6 +10,7 @@ import kkt.sai.composetodoapp.entity.OutCome.*
 import kkt.sai.composetodoapp.model.local.LocalDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import java.lang.Error
 
 
@@ -20,10 +21,11 @@ class DefaultTaskRepository(
 
 
     override fun getTasks(): Flow<OutCome<List<Task>>> {
-
-      data.value = taskslocalDataSource.getTasks()
-
-        return data;
+        return try {
+            taskslocalDataSource.getTasks().map { Success(it) }
+        } catch (e: Exception) {
+            flow { OutCome.Error(e) }
+        }
     }
 
     override fun getTasksNetwork(): LiveData<OutCome<List<Task>>> {

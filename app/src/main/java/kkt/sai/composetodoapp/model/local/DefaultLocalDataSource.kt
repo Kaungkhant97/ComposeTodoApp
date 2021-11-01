@@ -8,15 +8,14 @@ import kkt.sai.composetodoapp.entity.Task
 import kkt.sai.composetodoapp.model.local.LocalDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 
 class DefaultLocalDataSource internal constructor(private val tasksDao: TasksDao,
                             ) : LocalDataSource {
 
 
-    override fun getTasks(): LiveData<OutCome<List<Task>>> {
-        return Transformations.map(tasksDao.getTasks(),{
-            OutCome.Success(it);
-        })
+    override fun getTasks(): Flow<List<Task>> {
+        return tasksDao.getTasks();
     }
 
     override suspend fun insertTask(task:Task) {

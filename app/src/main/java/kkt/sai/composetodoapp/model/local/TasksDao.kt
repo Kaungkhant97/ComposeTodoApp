@@ -24,6 +24,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 import kkt.sai.composetodoapp.entity.Task
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Data Access Object for the tasks table.
@@ -54,7 +55,7 @@ interface TasksDao {
      * @return all tasks.
      */
     @Query("SELECT * FROM Tasks")
-    fun getTasks(): LiveData<List<Task>>
+    fun getTasks(): Flow<List<Task>>
 
     /**
      * Select a task by id.
