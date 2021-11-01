@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  : ViewModel() {
-<<<<<<< HEAD
     val title: MutableState<String> = mutableStateOf("")
     val description: MutableState<String> = mutableStateOf("")
 
@@ -29,9 +28,6 @@ class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  :
 
 
     val _items: LiveData<OutCome<List<Task>>> = taskRepo.getTasksNetwork()
-=======
-     val _items: LiveData<OutCome<List<Task>>> = taskRepo.getTasksNetwork()
->>>>>>> 791055cc9fff7a8325d04ea55851ce07b7f132e4
 
 
 

@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package kkt.sai.composetodoapp.model.local
+package com.example.android.architecture.blueprints.todoapp.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.android.architecture.blueprints.todoapp.data.source.local.TasksDao
 
 import kkt.sai.composetodoapp.entity.Task
 
@@ -29,5 +28,6 @@ import kkt.sai.composetodoapp.entity.Task
  */
 @Database(entities = [Task::class], version = 1, exportSchema = false)
 abstract class ToDoDatabase : RoomDatabase() {
+
     abstract fun taskDao(): TasksDao
 }

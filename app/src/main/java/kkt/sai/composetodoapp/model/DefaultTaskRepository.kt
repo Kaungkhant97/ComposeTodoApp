@@ -10,35 +10,29 @@ import kkt.sai.composetodoapp.entity.OutCome.*
 import kkt.sai.composetodoapp.model.local.LocalDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-<<<<<<< HEAD
 import java.lang.Error
-=======
-import kotlinx.coroutines.flow.map
-import kotlin.Error
->>>>>>> 791055cc9fff7a8325d04ea55851ce07b7f132e4
 
 
 class DefaultTaskRepository(
-    private val tasksLocalDataSource: LocalDataSource,
+    private val taskslocalDataSource: LocalDataSource,
     private val tasksRemoteDataSource: RemoteDataSource
-    ) : TaskRepository {
+) : TaskRepository {
 
-    override fun getTasks(): Flow<OutCome<List<Task>>> {
-        return try {
-            tasksLocalDataSource.getTasks().map { Success(it) }
-        } catch (e: Error) {
-            flow { OutCome.Error(e.localizedMessage) }
-        }
-    }
 
+//    override fun getTasks(): LiveData<OutCome<List<Task>>> {
+//        val data = MutableLiveData<Result<List<Task>>>()
+////        data.value = taskslocalDataSource.getTasks()
+//
+//        return data;
+//    }
 
     override fun getTasksNetwork(): LiveData<OutCome<List<Task>>> {
-        val response = liveData(Dispatchers.IO) {
+        val Response = liveData(Dispatchers.IO) {
             emit(Loading)
             kotlinx.coroutines.delay(10000L)
             emit(tasksRemoteDataSource.getTasks())
         }
-        return response
+        return Response
     }
 
     override suspend fun insertTask(task: Task) {
