@@ -7,7 +7,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import kkt.sai.composetodoapp.viewmodel.MainViewModel
 
 @Composable
@@ -21,7 +20,7 @@ fun EditScreen ( taskId:String?, mainViewModel: MainViewModel){
             .defaultMinSize(minHeight = 150.dp)
             .fillMaxWidth(),textStyle = MaterialTheme.typography.body1)
         Spacer(modifier = Modifier.padding(10.dp))
-        Button(onClick = { mainViewModel.insertTask() },Modifier.align(Alignment.CenterHorizontally)) {
+        Button(onClick = { mainViewModel.updateTask() },Modifier.align(Alignment.CenterHorizontally)) {
             Text(text = "Add")
         }
 

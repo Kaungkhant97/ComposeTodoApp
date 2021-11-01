@@ -64,7 +64,7 @@ interface TasksDao {
      * @return the task with taskId.
      */
     @Query("SELECT * FROM Tasks WHERE entryid = :taskId")
-    suspend fun getTaskById(taskId: String): Task?
+    fun getTaskById(taskId: String): Flow<Task>
 
     /**
      * Insert a task in the database. If the task already exists, replace it.

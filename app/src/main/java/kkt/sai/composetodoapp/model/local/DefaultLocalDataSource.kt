@@ -22,7 +22,13 @@ class DefaultLocalDataSource internal constructor(private val tasksDao: TasksDao
         tasksDao.insertTask(task);
     }
 
-    override suspend fun getTask(taskId: String): Task? {
-        return tasksDao.getTaskById(taskId);
+    override fun getTask(taskId: String): Flow<Task> {
+       return tasksDao.getTaskById(taskId);
     }
+
+    override suspend fun updateTask(task: Task) {
+        tasksDao.updateTask(task);
+    }
+
+
 }

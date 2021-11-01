@@ -55,10 +55,12 @@ fun NavigationComponent(){
             val listViewModel = hiltViewModel<ListViewModel>();
             ListScreen(viewModel = listViewModel,{taskId:String -> navController.navigate("edit?taskId="+taskId)});
         }
+
         composable("edit?taskId={taskId}"){
 
 
             val mainViewModel = hiltViewModel<MainViewModel>();
+
             EditScreen(  taskId = it.arguments?.getString("taskId"),mainViewModel )
 
         }

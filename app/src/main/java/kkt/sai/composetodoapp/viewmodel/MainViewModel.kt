@@ -11,17 +11,31 @@ import kkt.sai.composetodoapp.entity.Task
 import kkt.sai.composetodoapp.entity.succeeded
 import kkt.sai.composetodoapp.model.TaskRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  : ViewModel() {
+    private var isUpdate: Boolean = false;
+
     val title: MutableState<String> = mutableStateOf("")
     val detail: MutableState<String> = mutableStateOf("")
 
-    fun insertTask() {
+    val _title: MutableStateFlow<String> = MutableStateFlow(title.value);
+    val _detail: MutableStateFlow<String> = MutableStateFlow(detail.value);
+
+
+    fun updateTask() {
         viewModelScope.launch(Dispatchers.IO){
-            taskRepo.insertTask(Task(title.value,detail.value));
+            if(isUpdate){
+              taskRepo.updateTask(Task(title.value,detail.value));
+            }else{
+                taskRepo.insertTask(Task(title.value,detail.value));
+            }
+
         }
 
     }
@@ -30,17 +44,22 @@ class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  :
     fun getTaskDetail(taskId: String?) {
 
         if(taskId == null){
-            title.value = "";
-            detail.value = "";
+            _title.value = "";
+            _detail.value = "";
+            isUpdate = true;
         }else{
             viewModelScope.launch(Dispatchers.IO){
-               var taskOutCome =  taskRepo.getTask(taskId);
-                if(taskOutCome.succeeded){
-                    var task  = (taskOutCome as OutCome.Success<Task>).data;
+
+                taskRepo.getTask(taskId).collect {
+                if(it.succeeded){
+                    val task =  (it as OutCome.Success).data;
                     title.value = task.title;
                     detail.value = task.detail;
                 }else{
-                    //TODO show error
+                    _title.value = "";
+                    _detail.value = "";
+                }
+
                 }
             }
         }

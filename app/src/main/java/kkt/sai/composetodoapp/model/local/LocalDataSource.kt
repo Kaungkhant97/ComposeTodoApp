@@ -12,5 +12,6 @@ interface LocalDataSource {
 
     suspend fun insertTask(task: Task);
 
-    suspend fun getTask(taskId: String): Task?
+    fun getTask(taskId: String): Flow<Task>
+    suspend fun updateTask(task: Task);
 }

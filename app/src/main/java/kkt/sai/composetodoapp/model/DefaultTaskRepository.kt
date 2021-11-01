@@ -44,12 +44,17 @@ class DefaultTaskRepository(
 
     }
 
-    override suspend fun getTask(taskId:String): OutCome<Task> {
-        var task = taskslocalDataSource.getTask(taskId);
-        if (task == null){
-          return OutCome.Error(NullPointerException());
-      }else{
-          return OutCome.Success(task);
-      }
+
+    override  fun getTask(taskId:String): Flow<OutCome<Task>> {
+        return try {
+            taskslocalDataSource.getTask(taskId).map { Success(it) }
+        } catch (e: Exception) {
+            flow { OutCome.Error(e) }
+        }
+
+    }
+
+    override suspend fun updateTask(task: Task) {
+        taskslocalDataSource.updateTask(task);
     }
 }

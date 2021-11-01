@@ -12,6 +12,7 @@ interface TaskRepository {
     fun getTasksNetwork(): LiveData<OutCome<List<Task>>>
 
     suspend fun insertTask(task:Task);
-    suspend fun getTask(taskId:String) : OutCome<Task>;
+    fun getTask(taskId:String) :  Flow<OutCome<Task>>;
+    suspend fun updateTask(task: Task);
 
 }
