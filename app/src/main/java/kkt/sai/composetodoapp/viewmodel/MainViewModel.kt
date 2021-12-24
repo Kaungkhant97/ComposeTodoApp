@@ -19,19 +19,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  : ViewModel() {
+    private var _taskId: String="";
     private var isUpdate: Boolean = false;
 
     val title: MutableState<String> = mutableStateOf("")
     val detail: MutableState<String> = mutableStateOf("")
 
-    val _title: MutableStateFlow<String> = MutableStateFlow(title.value);
-    val _detail: MutableStateFlow<String> = MutableStateFlow(detail.value);
+
 
 
     fun updateTask() {
         viewModelScope.launch(Dispatchers.IO){
             if(isUpdate){
-              taskRepo.updateTask(Task(title.value,detail.value));
+              taskRepo.updateTask(Task(title.value,detail.value,id=_taskId));
             }else{
                 taskRepo.insertTask(Task(title.value,detail.value));
             }
@@ -44,8 +44,8 @@ class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  :
     fun getTaskDetail(taskId: String?) {
 
         if(taskId == null){
-            _title.value = "";
-            _detail.value = "";
+            title.value = "";
+            detail.value = "";
             isUpdate = true;
         }else{
             viewModelScope.launch(Dispatchers.IO){
@@ -55,9 +55,11 @@ class MainViewModel @Inject constructor(private val taskRepo :TaskRepository)  :
                     val task =  (it as OutCome.Success).data;
                     title.value = task.title;
                     detail.value = task.detail;
+                    _taskId = task.id;
+                    isUpdate = true;
                 }else{
-                    _title.value = "";
-                    _detail.value = "";
+                    title.value = "";
+                    detail.value = "";
                 }
 
                 }

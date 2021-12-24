@@ -39,7 +39,7 @@ fun ListScreen(
             }
         },
         floatingActionButton = {
-            ListFab()
+            ListFab(navigate)
         },
         floatingActionButtonPosition = FabPosition.Center,
         bottomBar = {
@@ -97,11 +97,9 @@ fun TaskItem(
 }
 
 @Composable
-fun ListFab() {
+fun ListFab(navigate: (route: String) -> Unit) {
     FloatingActionButton(
-        onClick = {
-           // TODO
-        },
+        onClick = {navigate("")},
         backgroundColor = Color.Blue,
     ) {
         Icon(

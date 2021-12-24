@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -60,8 +61,10 @@ fun NavigationComponent(){
 
 
             val mainViewModel = hiltViewModel<MainViewModel>();
-
-            EditScreen(  taskId = it.arguments?.getString("taskId"),mainViewModel )
+           LaunchedEffect(true) {
+            mainViewModel.getTaskDetail(it.arguments?.getString("taskId"))
+        }
+            EditScreen( mainViewModel.title,mainViewModel.detail, { mainViewModel.updateTask() });
 
         }
     }
